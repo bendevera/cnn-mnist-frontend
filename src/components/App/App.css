@@ -1,0 +1,15 @@
+html, body, .App, .App>div {
+  height: 100%;
+  width: 100%;
+}
+
+.App {
+  font-family: 'Courier Prime', monospace;
+  background-color: black;
+  width: 100vw;
+}
+
+.main {
+  background-color: black;
+  color: white;
+}

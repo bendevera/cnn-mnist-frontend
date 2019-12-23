@@ -1,0 +1,64 @@
+.sticky-sidebar {
+    background-color: #23302E;
+    color: white;
+    height: 100vh;
+}
+
+.sticky-sidebar h1 {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #839693;
+}
+
+.sticky-sidebar h2 {
+    font-size: 1.25em;
+    font-weight: 400;
+    margin-top: 3%;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    padding: 2% 0;
+}
+
+.sticky-sidebar h3 {
+    color: black;
+    font-size: 1.15em;
+    font-weight: 400;
+    padding: 2% 0;
+}
+
+.sticky-sidebar ul {
+    list-style-type: none;
+}
+
+.algo-link {
+    font-size: .75em;
+    font-weight: 400;
+    margin: 0;
+    color: #4bab9c;
+}
+
+.algo-link:hover {
+    background-color: #839693;
+    color: black;
+}
+
+.sub-link-list {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+ /* removing padding from ul in the sidebar */
+.main-link-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.sub-link-list-ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.algo-link-list {
+    list-style: none;
+    padding-left: 0;
+}
