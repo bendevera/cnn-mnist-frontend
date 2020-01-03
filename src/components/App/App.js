@@ -30,21 +30,33 @@ class App extends React.Component {
   // this function sends the base64 encoded png to the server to get predictions
   getPredictions() {
     console.log("Getting predictions");
-    // fetch('localhost:5000/api/predictions', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     img: this.state.img
-    //   })
-    // })
+    let data = {
+      img: this.state.img,
+      algos: this.state.activeAlgos
+    }
+    console.log(data)
+    fetch('http://localhost:5000/predictions', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      console.log(responseJson)
+      this.setState({
+        queryResults: responseJson.predictions 
+      })
+    })
+    .catch((error) => {
+      console.log(error)
+    })
   }
 
   handleDrawingChange(e) {
     console.log("Change to drawing")
-    // console.log(e.target.getContext('2d'));
     let canvas = e.target
     var dataUrl = canvas.toDataURL();
     console.log(dataUrl);
@@ -71,7 +83,7 @@ class App extends React.Component {
                       tool={Tools.Pencil} 
                       lineColor='black'
                       backgroundColor='white'
-                      lineWidth={3}
+                      lineWidth={9}
                       onChange={this.handleDrawingChange} />
                     <button className="query-button" onClick={this.getPredictions}>Get Predictions</button>
                   </div>
@@ -79,8 +91,8 @@ class App extends React.Component {
                     <h3 className="main-header">Model Predictions</h3>
                     {this.state.queryResults.map(result => {
                       return (
-                        <div className="prediction">
-                          <h5 className="prediction-algo">{result.algo}</h5>
+                        <div className="prediction" key={result.name}>
+                          <p className="prediction-algo">{result.name}</p>
                           <p className="prediction-result">{result.prediction}</p>
                         </div>
                       )
