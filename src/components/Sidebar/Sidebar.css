@@ -1,51 +1,60 @@
 .sticky-sidebar {
-    background-color: #23302E;
+    background-color: rgb(20, 27, 26);
     color: white;
     height: 100vh;
+    margin:0;
+    padding:3%;
 }
 
+/* heading styles  */
 .sticky-sidebar h1 {
     font-size: 1.5em;
     font-weight: 700;
     color: #839693;
 }
-
 .sticky-sidebar h2 {
     font-size: 1.25em;
     font-weight: 400;
-    margin-top: 3%;
     border-top: 1px solid white;
     border-bottom: 1px solid white;
     padding: 2% 0;
 }
-
 .sticky-sidebar h3 {
-    color: black;
+    color: #839693;
     font-size: 1.15em;
     font-weight: 400;
-    padding: 2% 0;
 }
 
-.sticky-sidebar ul {
-    list-style-type: none;
-}
-
-.algo-link {
+ /* each individual algo link style  */
+ /* active  */
+.algo-link-active {
     font-size: .75em;
     font-weight: 400;
     margin: 0;
     color: #4bab9c;
-}
-
-.algo-link:hover {
     background-color: #839693;
     color: black;
+    cursor: pointer;
 }
+/* .algo-link-active:hover {
+    background-color: rgb(20, 27, 26);
+    color: #4bab9c;
+    cursor: pointer;
+} */
 
-.sub-link-list {
-    margin-top: 5%;
-    margin-bottom: 5%;
+.algo-link-not-active {
+    font-size: .75em;
+    font-weight: 400;
+    margin: 0;
+    color: #4bab9c;
+    cursor: pointer;
 }
+/* .algo-link-not-active:hover {
+    background-color: #839693;
+    color: black;
+    cursor: pointer;
+} */
+
 
  /* removing padding from ul in the sidebar */
 .main-link-list {

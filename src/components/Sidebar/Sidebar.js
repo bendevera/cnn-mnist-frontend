@@ -6,71 +6,71 @@ class Sidebar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            supervisedClassifiers: [{name : 'SGD Classifier', id: 1}],
-            supervisedRegressors: [],
-            unsupervisedClassifiers: [],
-            unsupervisedRegressors: []
+            algos: [{name : 'SGD Classifier', id: 1, active: false}],
+            activeAlgos: []
         }
-        this.getNewPage = this.getNewPage.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
-    getNewPage(e) {
-        console.log(e.target.getAttribute('name'));
-        this.props.getNewPage(e.target.getAttribute('name'));
+    handleClick(e) {
+        this.state.algos.map((elem, index) => {
+            if (elem.id == e.target.getAttribute('algoid')) {
+                let currAlgos = [...this.state.activeAlgos]
+                if (elem.active) {
+                    let indexActive = currAlgos.indexOf(elem.id)
+                    currAlgos.splice(indexActive, 1)
+                } else {
+                    currAlgos.push(elem.id)
+                }
+                this.setState({
+                    activeAlgos: currAlgos
+                })
+                this.state.algos[index].active = !this.state.algos[index].active
+                this.forceUpdate()
+                this.props.setAlgos(currAlgos)
+                return true;
+            }
+        })
     }
 
     render() {
         return (
             <div className="col-3 sticky-sidebar">
-                <div className="sticky-top">
-                    <h1>ML Algos Roadmap</h1>
+                    <h1>MNIST Algo Toy</h1>
 
                     <ul className="main-link-list">
                         <li className="sub-link-list">
-                            <h2>supervised</h2>
+                            <h2>category</h2>
                             <ul className="sub-link-list-ul">
                                 <li className="sub-sub-link-list">
-                                    <h3>classification</h3>
                                     <ul className="algo-link-list">
-                                        {this.state.supervisedClassifiers.map(item => {
+                                        {this.state.algos.map(item => {
+                                            if (item.active) {
+                                                return (
+                                                    <li className="algo-link-active" 
+                                                    onClick={this.handleClick}
+                                                    name={item.name}
+                                                    key={item.id}
+                                                    algoid={item.id}>
+                                                        {item.name}
+                                                    </li> 
+                                                )
+                                            }
                                             return (
-                                                <li className="algo-link" 
-                                                onClick={this.getNewPage}
+                                                <li className="algo-link-not-active" 
+                                                onClick={this.handleClick}
                                                 name={item.name}
-                                                key={item.id}>
+                                                key={item.id}
+                                                algoid={item.id}>
                                                     {item.name}
                                                 </li>
                                             );
                                         })}
                                     </ul>
                                 </li>
-                                <li className="sub-sub-link-list">
-                                    <h3>regression</h3>
-                                    <ul className="algo-link-list">
-                                        <li className="algo-link">supervised-regressor</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li className="sub-link-list">
-                            <h2>unsupervised</h2>
-                            <ul className="sub-link-list-ul">
-                                <li className="sub-sub-link-list">
-                                    <h3>classification</h3>
-                                    <ul className="algo-link-list">
-                                        <li className="algo-link">unsupervised-classifier</li>
-                                    </ul>
-                                </li>
-                                <li className="sub-sub-link-list">
-                                    <h3>regression</h3>
-                                    <ul className="algo-link-list">
-                                        <li className="algo-link">unsupervised-regressor</li>
-                                    </ul>
-                                </li>
                             </ul>
                         </li>
                     </ul>
-                </div>
             </div>
         )
     }
