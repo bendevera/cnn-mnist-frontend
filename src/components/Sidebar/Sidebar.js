@@ -1,12 +1,13 @@
 import React from 'react';
 import './Sidebar.css';
+import config from '../../config';
 
 
 class Sidebar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            algos: [{name : 'SGD Classifier', id: 1, active: false}],
+            algos: [],
             activeAlgos: []
         }
         this.handleClick = this.handleClick.bind(this);
@@ -33,6 +34,24 @@ class Sidebar extends React.Component {
         })
     }
 
+    componentWillMount() {
+        console.log("component mounting")
+        fetch(config.apiBase+"/algos")
+            .then(response => { 
+                return response.json()
+            })
+            .then(responseJson => {
+                var algos = responseJson.algos.map(function(algo) {
+                    let o = Object.assign({}, algo);
+                    o.active = false;
+                    return o;
+                })
+                this.setState({
+                    algos: algos
+                })
+            })
+    }
+
     render() {
         return (
             <div className="col-3 sticky-sidebar">
@@ -40,7 +59,7 @@ class Sidebar extends React.Component {
 
                     <ul className="main-link-list">
                         <li className="sub-link-list">
-                            <h2>category</h2>
+                            <h2>algo list</h2>
                             <ul className="sub-link-list-ul">
                                 <li className="sub-sub-link-list">
                                     <ul className="algo-link-list">
@@ -49,20 +68,20 @@ class Sidebar extends React.Component {
                                                 return (
                                                     <li className="algo-link-active" 
                                                     onClick={this.handleClick}
-                                                    name={item.name}
+                                                    name={item.title}
                                                     key={item.id}
                                                     algoid={item.id}>
-                                                        {item.name}
+                                                        {item.title}
                                                     </li> 
                                                 )
                                             }
                                             return (
                                                 <li className="algo-link-not-active" 
                                                 onClick={this.handleClick}
-                                                name={item.name}
+                                                name={item.title}
                                                 key={item.id}
                                                 algoid={item.id}>
-                                                    {item.name}
+                                                    {item.title}
                                                 </li>
                                             );
                                         })}

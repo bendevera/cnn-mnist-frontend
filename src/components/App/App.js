@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Sidebar from '../Sidebar/Sidebar';
 import {SketchField, Tools} from 'react-sketch';
+import config from '../../config';
 
 
 class App extends React.Component {
@@ -30,29 +31,33 @@ class App extends React.Component {
   // this function sends the base64 encoded png to the server to get predictions
   getPredictions() {
     console.log("Getting predictions");
-    let data = {
-      img: this.state.img,
-      algos: this.state.activeAlgos
-    }
-    console.log(data)
-    fetch('http://localhost:5000/predictions', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data)
-    })
-    .then((response) => response.json())
-    .then((responseJson) => {
-      console.log(responseJson)
-      this.setState({
-        queryResults: responseJson.predictions 
+    if (this.state.activeAlgos.length == 0) {
+      alert("Must have active algos to get predictions.")
+    } else {
+      let data = {
+        img: this.state.img,
+        algos: this.state.activeAlgos
+      }
+      console.log(data)
+      fetch(config.apiBase+'/predictions', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
       })
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson)
+        this.setState({
+          queryResults: responseJson.predictions 
+        })
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    }
   }
 
   handleDrawingChange(e) {
