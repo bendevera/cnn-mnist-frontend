@@ -1,5 +1,5 @@
 let config = {
-    apiBase: "http://18.218.207.233"
+    apiBase: "http://api.mnistalgotoy.com"
 }
 
 export default config
