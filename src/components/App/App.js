@@ -16,6 +16,7 @@ class App extends React.Component {
     this.setActiveAlgos = this.setActiveAlgos.bind(this);
     this.getPredictions = this.getPredictions.bind(this);
     this.handleDrawingChange = this.handleDrawingChange.bind(this);
+    this.clearCanvas = this.clearCanvas.bind(this)
   }
 
   // this function sets active algos so that when query is made results
@@ -60,14 +61,22 @@ class App extends React.Component {
     }
   }
 
-  handleDrawingChange(e) {
+  handleDrawingChange() {
     console.log("Change to drawing")
-    let canvas = e.target
+    let canvas = this._sketch
     var dataUrl = canvas.toDataURL();
     console.log(dataUrl);
     this.setState({
       img: dataUrl
     })
+  }
+
+  clearCanvas() {
+    console.log("Clearing canvas")
+    let canvas = this._sketch 
+    while (canvas.canUndo()) {
+      canvas.undo()
+    }
   }
 
   render() {
@@ -83,25 +92,37 @@ class App extends React.Component {
                   <div className="col">
                     <h3 className="main-header">Custom Data</h3>
                     <SketchField 
+                      ref={c => (this._sketch = c)}
                       width='280px' 
                       height='280px' 
                       tool={Tools.Pencil} 
                       lineColor='black'
                       backgroundColor='white'
-                      lineWidth={9}
+                      fillColor='white'
+                      lineWidth={15}
                       onChange={this.handleDrawingChange} />
-                    <button className="query-button" onClick={this.getPredictions}>Get Predictions</button>
+                    <div className="row">
+                      <div className="col">
+                        <button className="query-button" onClick={this.clearCanvas}>Clear Drawing</button>
+                      </div>
+                      <div className="col">
+                        <button className="query-button" onClick={this.getPredictions}>Get Predictions</button>
+                      </div>
+                    </div>
                   </div>
                   <div className="col">
                     <h3 className="main-header">Model Predictions</h3>
-                    {this.state.queryResults.map(result => {
-                      return (
-                        <div className="prediction" key={result.name}>
-                          <p className="prediction-algo">{result.name}</p>
-                          <p className="prediction-result">{result.prediction}</p>
-                        </div>
-                      )
-                    })}
+                    <div className="prediction-section">
+                      {this.state.queryResults.map(result => {
+                        return (
+                          <div className="prediction" key={result.id}>
+                            <h5 className="prediction-algo">{result.title}</h5>
+                            <p className="prediction-result">model prediction: <span className="prediction-num">{result.prediction}</span></p>
+                            <p className="prediction-description">{result.description}</p>
+                          </div>
+                        )
+                      })}
+                    </div>
                   </div>
                 </div>
             </div>
