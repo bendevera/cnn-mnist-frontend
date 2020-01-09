@@ -1,0 +1,19 @@
+.query-button {
+    border: 1px solid white;
+    background-color: black;
+    color: white;
+    margin-top: 5%;
+    cursor: pointer;
+}
+
+.draw-section {
+    background-color: rgb(20, 27, 26);
+}
+
+.sketch-canvas {
+    padding: 0;
+    margin: auto;
+    display: block;
+    width: 280px;
+    margin-bottom: 3%;
+}

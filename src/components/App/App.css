@@ -23,28 +23,3 @@ html, body, .App, .App>div {
   font-size: 1.5em;
   margin-bottom: 5%;
 }
-
-.query-button {
-  border: 1px solid white;
-  background-color: black;
-  color: white;
-  margin-top: 5%;
-  cursor: pointer;
-}
-
-/* .prediction-section {
-  margin-top: 5%;
-} */
-
-.prediction-algo {
-  color: #4bab9c;
-}
-
-.prediction-num {
-  color: #4bab9c;
-}
-
-.prediction-description {
-  font-size: .5em;
-  color: #839693;
-}

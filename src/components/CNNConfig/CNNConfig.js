@@ -1,9 +1,9 @@
 import React from 'react';
-import './Sidebar.css';
+import './CNNConfig.css';
 import config from '../../config';
 
 
-class Sidebar extends React.Component {
+class CNNConfig extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -54,7 +54,7 @@ class Sidebar extends React.Component {
 
     render() {
         return (
-            <div className="col-3 sticky-sidebar">
+            <div className="col-md-4 col-xs-12 sticky-sidebar">
                     <h1>MNIST Algo Toy</h1>
 
                     <ul className="main-link-list">
@@ -95,4 +95,4 @@ class Sidebar extends React.Component {
     }
 }
 
-export default Sidebar;
+export default CNNConfig;

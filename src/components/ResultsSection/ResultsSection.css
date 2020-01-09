@@ -1,0 +1,28 @@
+.result-header {
+    color: black;
+}
+
+.result-section {
+    background-color: white;
+}
+
+/* .prediction-section {
+  margin-top: 5%;
+} */
+
+.prediction-algo {
+    color: #4bab9c;
+}
+
+.prediction-result {
+    color: black;
+}
+
+.prediction-num {
+    color: #4bab9c;
+}
+
+.prediction-description {
+    font-size: .6em;
+    color: black;
+}

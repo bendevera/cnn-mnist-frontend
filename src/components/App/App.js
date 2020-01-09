@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
-import Sidebar from '../Sidebar/Sidebar';
-import {SketchField, Tools} from 'react-sketch';
+import CNNConfig from '../CNNConfig/CNNConfig';
+import DrawSection from '../DrawSection/DrawSection';
+import ResultsSection from '../ResultsSection/ResultsSection';
 import config from '../../config';
 
 
@@ -16,7 +17,6 @@ class App extends React.Component {
     this.setActiveAlgos = this.setActiveAlgos.bind(this);
     this.getPredictions = this.getPredictions.bind(this);
     this.handleDrawingChange = this.handleDrawingChange.bind(this);
-    this.clearCanvas = this.clearCanvas.bind(this)
   }
 
   // this function sets active algos so that when query is made results
@@ -61,22 +61,11 @@ class App extends React.Component {
     }
   }
 
-  handleDrawingChange() {
-    console.log("Change to drawing")
-    let canvas = this._sketch
-    var dataUrl = canvas.toDataURL();
+  handleDrawingChange(dataUrl) {
     console.log(dataUrl);
     this.setState({
       img: dataUrl
     })
-  }
-
-  clearCanvas() {
-    console.log("Clearing canvas")
-    let canvas = this._sketch 
-    while (canvas.canUndo()) {
-      canvas.undo()
-    }
   }
 
   render() {
@@ -84,49 +73,12 @@ class App extends React.Component {
       <div className="container App m-0">
         <div className="row">
 
-            <Sidebar setAlgos={this.setActiveAlgos}/>
+            <CNNConfig setAlgos={this.setActiveAlgos}/>
 
-            <div className="col-9 main m-0">
-                {/* <h1 className="main-header">Select what algos you want to predict the number you draw!</h1> */}
-                <div className="row">
-                  <div className="col">
-                    <h3 className="main-header">Custom Data</h3>
-                    <SketchField 
-                      ref={c => (this._sketch = c)}
-                      width='280px' 
-                      height='280px' 
-                      tool={Tools.Pencil} 
-                      lineColor='black'
-                      backgroundColor='white'
-                      fillColor='white'
-                      lineWidth={30}
-                      onChange={this.handleDrawingChange} />
-                    <div className="row">
-                      <div className="col">
-                        <button className="query-button" onClick={this.clearCanvas}>Clear Drawing</button>
-                      </div>
-                      <div className="col">
-                        <button className="query-button" onClick={this.getPredictions}>Get Predictions</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col">
-                    <h3 className="main-header">Model Predictions</h3>
-                    <div className="prediction-section">
-                      {this.state.queryResults.map(result => {
-                        return (
-                          <div className="prediction" key={result.id}>
-                            <h5 className="prediction-algo">{result.title}</h5>
-                            <p className="prediction-result">model prediction: <span className="prediction-num">{result.prediction}</span></p>
-                            <p className="prediction-description">{result.description}</p>
-                          </div>
-                        )
-                      })}
-                    </div>
-                  </div>
-                </div>
-            </div>
+            <DrawSection setImageData={this.handleDrawingChange} handlePredButton={this.getPredictions} />
 
+            <ResultsSection results={this.state.queryResults} />
+            
         </div>
     </div>
     )
