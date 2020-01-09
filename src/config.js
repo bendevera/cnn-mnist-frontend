@@ -1,7 +1,7 @@
 // prod
 console.log("Using prod API")
 let config = {
-    apiBase: "http://api.mnistalgotoy.com"
+    apiBase: "https://api.mnistalgotoy.com"
 }
 // test 
 // console.log("Using test API")
