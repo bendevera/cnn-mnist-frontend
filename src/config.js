@@ -1,12 +1,12 @@
 // prod
-// console.log("Using prod API")
-// let config = {
-//     apiBase: "https://api.mnistalgotoy.com"
-// }
-// test 
-console.log("Using test API")
+console.log("Using prod API")
 let config = {
-    apiBase: "http://localhost:5000"
+    apiBase: "https://api.mnistalgotoy.com"
 }
+// test 
+// console.log("Using test API")
+// let config = {
+//     apiBase: "http://localhost:5000"
+// }
 
 export default config
