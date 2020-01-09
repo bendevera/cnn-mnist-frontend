@@ -99,7 +99,7 @@ class App extends React.Component {
                       lineColor='black'
                       backgroundColor='white'
                       fillColor='white'
-                      lineWidth={15}
+                      lineWidth={30}
                       onChange={this.handleDrawingChange} />
                     <div className="row">
                       <div className="col">
