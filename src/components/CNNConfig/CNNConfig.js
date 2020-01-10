@@ -61,7 +61,8 @@ class CNNConfig extends React.Component {
                                         console.log("returning the active")
                                         return (
                                             <div 
-                                            className="setting-option-active col-4">
+                                            className="setting-option-active col-4"
+                                            key={key}>
                                                 {key}
                                             </div>
                                         )
@@ -71,7 +72,8 @@ class CNNConfig extends React.Component {
                                         <div 
                                         className="setting-option col-4"
                                         onClick={this.handleLayers}
-                                        data={key}>
+                                        data={key}
+                                        key={key}>
                                             {key}
                                         </div>
                                     )
@@ -85,7 +87,8 @@ class CNNConfig extends React.Component {
                                         console.log("returning the active")
                                         return (
                                             <div 
-                                            className="setting-option-active col-4">
+                                            className="setting-option-active col-4"
+                                            key={key}>
                                                 {key}
                                             </div>
                                         )
@@ -95,7 +98,8 @@ class CNNConfig extends React.Component {
                                         <div 
                                         className="setting-option col-4"
                                         onClick={this.handleOptimizer}
-                                        data={key}>
+                                        data={key}
+                                        key={key}>
                                             {key}
                                         </div>
                                     )

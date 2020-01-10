@@ -1,5 +1,6 @@
 import React from 'react';
 import './ConfirmPrediction.css';
+import config from '../../config';
 
 let initialState = {
     answered: false,
@@ -14,7 +15,9 @@ let initialState = {
         7: false,
         8: false,
         9: false
-    }
+    },
+    liveAcc: null,
+    valAcc: null
 }
 
 class ConfirmPrediction extends React.Component {
@@ -45,9 +48,34 @@ class ConfirmPrediction extends React.Component {
 
   sendConfirmation(){
     console.log("sending confirmation")
-    this.setState({
-        answered: true
+    let actual = Object.keys(this.state.data).filter(key => {
+        return this.state.data[key]
     })
+    console.log(actual)
+    let data = {correct: actual == this.props.algoPrediction}
+    fetch(config.apiBase+'/accuracy/'+this.props.algoId.toString(), {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson)
+        this.setState({
+            answered: true,
+            liveAcc: responseJson.liveAcc,
+            valAcc: responseJson.valAcc
+        })
+      })
+      .catch((error) => {
+        console.log(error)
+        this.setState({
+            answered: true
+        })
+      })
   }
 
   componentWillReceiveProps(nextProps) {
@@ -65,6 +93,8 @@ class ConfirmPrediction extends React.Component {
         return (
             <div className="con-prediction-wrapper">
                 <p className="answered">Thank you for your feedback!</p>
+                <p className="prediction-result">validation acc: <span className="prediction-num">{this.state.valAcc*100}%</span></p>
+                <p className="prediction-result">live acc: <span className="prediction-num">{this.state.liveAcc*100}%</span></p>
             </div>
         )
     } else {
