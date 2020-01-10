@@ -1,10 +1,23 @@
 .sticky-sidebar {
     background-color: black;
     color: white;
-    height: 100vh;
     margin:0;
     padding:3%;
+    height: 100vh;
+    margin-bottom: 5%;
 }
+
+/* @media screen and (min-width: 600px) {
+    .sticky-sidebar {
+        height: 100vh;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .sticky-sidebar {
+        height: 100vh;
+    }
+} */
 
 /* heading styles  */
 .sticky-sidebar h1 {
@@ -70,4 +83,40 @@
 .algo-link-list {
     list-style: none;
     padding-left: 0;
+}
+
+.setting-option-active {
+    background-color: white;
+    color: black;
+    /* margin: 3%; */
+    display: block;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 150x;
+    text-align: center;
+}
+
+.setting-option {
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    /* margin: 3%; */
+    text-align: center;
+    display: block;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 150x;
+    cursor: pointer;
+}
+
+.setting-option:hover {
+    color: #4bab9c;
+}
+
+.setting-heading {
+    color: #4bab9c;
+    font-size: .75em;
+    margin: 0;
 }

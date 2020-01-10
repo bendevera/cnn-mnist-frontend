@@ -1,6 +1,7 @@
 html, body, .App, .App>div {
-  height: 100vw;
-  width: 100vw;
+  /* height: 100vw;
+  width: 100vw; */
+  width: 100%;
   background-color: black;
 }
 
@@ -8,7 +9,7 @@ html, body, .App, .App>div {
   font-family: 'Courier Prime', monospace;
   background-color: black;
   color: white;
-  width: 100vw;
+  /* width: 100vw; */
   margin:0;
   padding: 0;
 }

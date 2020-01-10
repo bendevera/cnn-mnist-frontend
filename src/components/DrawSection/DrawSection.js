@@ -51,11 +51,11 @@ class DrawSection extends React.Component {
                     />
                 </div>
                 <div className="row">
-                    <div className="col">
-                    <button className="query-button" onClick={this.clearCanvas}>Clear Drawing</button>
+                    <div className="col-6">
+                      <button className="query-button" onClick={this.clearCanvas}>Clear Drawing</button>
                     </div>
-                    <div className="col">
-                    <button className="query-button" onClick={this.predButtonClick}>Get Predictions</button>
+                    <div className="col-6">
+                      <button className="query-button" onClick={this.predButtonClick}>Get Predictions</button>
                     </div>
                 </div>
                 </div>

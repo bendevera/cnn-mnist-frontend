@@ -7,87 +7,100 @@ class CNNConfig extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            algos: [],
-            activeAlgos: []
+            optimizer: {"adam": false, "rmsprop":false},
+            layers: {2: false, 3: false}
         }
-        this.handleClick = this.handleClick.bind(this);
+        this.handleOptimizer = this.handleOptimizer.bind(this);
+        this.handleLayers = this.handleLayers.bind(this);
     }
 
-    handleClick(e) {
-        this.state.algos.map((elem, index) => {
-            if (elem.id == e.target.getAttribute('algoid')) {
-                let currAlgos = [...this.state.activeAlgos]
-                if (elem.active) {
-                    let indexActive = currAlgos.indexOf(elem.id)
-                    currAlgos.splice(indexActive, 1)
-                } else {
-                    currAlgos.push(elem.id)
-                }
-                this.setState({
-                    activeAlgos: currAlgos
-                })
-                this.state.algos[index].active = !this.state.algos[index].active
-                this.forceUpdate()
-                this.props.setAlgos(currAlgos)
-                return true;
+    handleOptimizer(e) {
+        let key = e.target.getAttribute('data');
+        let newState = {};
+        Object.keys(this.state.optimizer).map( curr_key => {
+            if (curr_key == key) {
+                newState[curr_key] = true;
+            } else {
+                newState[curr_key] = false;
             }
         })
+        this.setState({
+            optimizer: newState
+        })
+        this.props.setOptimizer(key)
     }
 
-    componentWillMount() {
-        console.log("component mounting")
-        fetch(config.apiBase+"/algos")
-            .then(response => { 
-                return response.json()
-            })
-            .then(responseJson => {
-                var algos = responseJson.algos.map(function(algo) {
-                    let o = Object.assign({}, algo);
-                    o.active = false;
-                    return o;
-                })
-                this.setState({
-                    algos: algos
-                })
-            })
+    handleLayers(e) {
+        let key = e.target.getAttribute('data');
+        let newState = {};
+        Object.keys(this.state.layers).map( curr_key => {
+            if (curr_key == key) {
+                newState[curr_key] = true;
+            } else {
+                newState[curr_key] = false;
+            }
+        })
+        this.setState({
+            layers: newState
+        })
+        this.props.setLayers(key)
     }
 
     render() {
         return (
             <div className="col-md-4 col-xs-12 sticky-sidebar">
                     <h1>MNIST Algo Toy</h1>
-
                     <ul className="main-link-list">
                         <li className="sub-link-list">
-                            <h2>algo list</h2>
-                            <ul className="sub-link-list-ul">
-                                <li className="sub-sub-link-list">
-                                    <ul className="algo-link-list">
-                                        {this.state.algos.map(item => {
-                                            if (item.active) {
-                                                return (
-                                                    <li className="algo-link-active" 
-                                                    onClick={this.handleClick}
-                                                    name={item.title}
-                                                    key={item.id}
-                                                    algoid={item.id}>
-                                                        {item.title}
-                                                    </li> 
-                                                )
-                                            }
-                                            return (
-                                                <li className="algo-link-not-active" 
-                                                onClick={this.handleClick}
-                                                name={item.title}
-                                                key={item.id}
-                                                algoid={item.id}>
-                                                    {item.title}
-                                                </li>
-                                            );
-                                        })}
-                                    </ul>
-                                </li>
-                            </ul>
+                            <h2>model parameters</h2>
+                            <div className="setting-item">
+                                <h5 className="setting-heading">layers</h5>
+                                {Object.keys(this.state.layers).map( key => {
+                                    console.log(key);
+                                    if (this.state.layers[key]) {
+                                        console.log("returning the active")
+                                        return (
+                                            <div 
+                                            className="setting-option-active col-4">
+                                                {key}
+                                            </div>
+                                        )
+                                    }
+                                    console.log("returning the non active")
+                                    return (
+                                        <div 
+                                        className="setting-option col-4"
+                                        onClick={this.handleLayers}
+                                        data={key}>
+                                            {key}
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                            <div className="setting-item">
+                                <h5 className="setting-heading">optimizer</h5>
+                                {Object.keys(this.state.optimizer).map( key => {
+                                    console.log(key);
+                                    if (this.state.optimizer[key]) {
+                                        console.log("returning the active")
+                                        return (
+                                            <div 
+                                            className="setting-option-active col-4">
+                                                {key}
+                                            </div>
+                                        )
+                                    }
+                                    console.log("returning the non active")
+                                    return (
+                                        <div 
+                                        className="setting-option col-4"
+                                        onClick={this.handleOptimizer}
+                                        data={key}>
+                                            {key}
+                                        </div>
+                                    )
+                                })}
+                            </div>
                         </li>
                     </ul>
             </div>

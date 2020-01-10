@@ -10,37 +10,46 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      activeAlgos: [],
-      queryResults: [],
+      optimizer: null,
+      layers: null,
+      queryResults: null,
       img: null
     }
-    this.setActiveAlgos = this.setActiveAlgos.bind(this);
     this.getPredictions = this.getPredictions.bind(this);
     this.handleDrawingChange = this.handleDrawingChange.bind(this);
+    this.setOptimizer = this.setOptimizer.bind(this);
+    this.setLayers = this.setLayers.bind(this);
   }
 
-  // this function sets active algos so that when query is made results
-  // are collected from all algos that are active
-  setActiveAlgos(algos) {
-    console.log("Setting active algos");
+  setOptimizer(value) {
+    console.log("Setting optimizer");
     this.setState({
-      activeAlgos: algos
+      optimizer: value
     })
-    console.log(algos);
+    console.log(value);
+  }
+
+  setLayers(value) {
+    console.log("Setting layers");
+    this.setState({
+      layers: value
+    })
+    console.log(value);
   }
 
   // this function sends the base64 encoded png to the server to get predictions
   getPredictions() {
     console.log("Getting predictions");
-    if (this.state.activeAlgos.length == 0) {
-      alert("Must have active algos to get predictions.")
+    if (this.state.optimizer === null | this.state.layers === null) {
+      alert("Must have all model parameters selected.")
     } else {
       let data = {
         img: this.state.img,
-        algos: this.state.activeAlgos
+        optimizer: this.state.optimizer,
+        layers: this.state.layers
       }
       console.log(data)
-      fetch(config.apiBase+'/predictions', {
+      fetch(config.apiBase+'/predict', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -52,7 +61,7 @@ class App extends React.Component {
       .then((responseJson) => {
         console.log(responseJson)
         this.setState({
-          queryResults: responseJson.predictions 
+          queryResults: responseJson
         })
       })
       .catch((error) => {
@@ -70,10 +79,10 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="container App m-0">
-        <div className="row">
+      <div className="App m-0">
+        <div className="row m-0">
 
-            <CNNConfig setAlgos={this.setActiveAlgos}/>
+            <CNNConfig setOptimizer={this.setOptimizer} setLayers={this.setLayers}/>
 
             <DrawSection setImageData={this.handleDrawingChange} handlePredButton={this.getPredictions} />
 

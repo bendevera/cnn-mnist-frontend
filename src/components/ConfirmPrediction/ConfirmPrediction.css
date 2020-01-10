@@ -1,0 +1,60 @@
+.con-prediction-wrapper {
+    display: inline-block;
+    width: 100%;
+    font-size: 1.5em;
+}
+
+.con-pred-active {
+    display: inline-block;
+    /* background-color: #4bab9c; */
+    color: black;
+    padding: 5%;
+    margin: 2%;
+}
+
+.con-pred {
+    display: inline-block;
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    padding: 5%;
+    margin: 2%;
+}
+
+.confirm-button {
+    border: 1px solid rgb(20, 27, 26);
+    background-color: white;
+    color: rgb(20, 27, 26);
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 150x;
+    cursor:pointer;
+}
+
+.confirm-button:hover {
+    border: 1px solid rgb(20, 27, 26);
+    background-color: #4bab9c;
+    color: rgb(20, 27, 26);
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 150x;
+    cursor:pointer;
+}
+
+.correct {
+    background-color: green;
+}
+
+.incorrect {
+    background-color: red;
+}
+
+.answered {
+    color: black;
+}
