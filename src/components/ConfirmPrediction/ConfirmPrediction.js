@@ -92,7 +92,7 @@ class ConfirmPrediction extends React.Component {
     if (this.state.answered) {
         return (
             <div className="con-prediction-wrapper">
-                <p className="answered">Thank you for your feedback!</p>
+                <p className="answered">thank you for your feedback!</p>
                 <p className="prediction-result">validation acc: <span className="prediction-num">{this.state.valAcc*100}%</span></p>
                 <p className="prediction-result">live acc: <span className="prediction-num">{Math.round(this.state.liveAcc*1000)/10}%</span></p>
             </div>
@@ -100,7 +100,7 @@ class ConfirmPrediction extends React.Component {
     } else {
         return (
             <div className="con-prediction-wrapper">
-                <p className="answered">Is it correct?</p>
+                <p className="answered">is it correct?</p>
                 {Object.keys(this.state.data).map( key => {
                     if (this.state.data[key]) {
                         if (key == this.props.algoPrediction){
@@ -129,7 +129,7 @@ class ConfirmPrediction extends React.Component {
                 })}
                 {/* <button className="confirm-button" onClick={this.predButtonClick}>Confirm Your Drawing</button> */}
                 {/* need to add onclick function */}
-                <button className="confirm-button" onClick={this.sendConfirmation}>Confirm Your Drawing</button>
+                <button className="confirm-button" onClick={this.sendConfirmation}>confirm your drawing</button>
             </div>
         )
     }
