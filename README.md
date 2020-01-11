@@ -1,5 +1,7 @@
 # CNN MNIST Frontend 
 
+`live at: https://www.mnistalgotoy.com/`
+
 Portfolio project pivoted from MNIST-ALGO-TOY
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
