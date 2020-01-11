@@ -94,12 +94,13 @@ class ConfirmPrediction extends React.Component {
             <div className="con-prediction-wrapper">
                 <p className="answered">Thank you for your feedback!</p>
                 <p className="prediction-result">validation acc: <span className="prediction-num">{this.state.valAcc*100}%</span></p>
-                <p className="prediction-result">live acc: <span className="prediction-num">{this.state.liveAcc*100}%</span></p>
+                <p className="prediction-result">live acc: <span className="prediction-num">{Math.round(this.state.liveAcc*1000)/10}%</span></p>
             </div>
         )
     } else {
         return (
             <div className="con-prediction-wrapper">
+                <p className="answered">Is it correct?</p>
                 {Object.keys(this.state.data).map( key => {
                     if (this.state.data[key]) {
                         if (key == this.props.algoPrediction){

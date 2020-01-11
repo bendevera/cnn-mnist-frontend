@@ -35,7 +35,7 @@ class DrawSection extends React.Component {
         <div className="col-md-4 col-xs-12 main m-0 draw-section">
             <div className="row">
                 <div className="col">
-                <h3 className="main-header">Draw A Number</h3>
+                <h3 className="main-header draw-section-header">2. data</h3>
                 <div className="sketch-wrapper">
                     <SketchField 
                         ref={c => (this._sketch = c)}

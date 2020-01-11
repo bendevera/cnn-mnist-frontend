@@ -1,4 +1,6 @@
-.result-header {
+.prediction-section-header {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
     color: black;
 }
 
@@ -11,16 +13,6 @@
         height: 100vh;
     }
 }
-
-@media screen and (max-width: 600px) {
-    .sticky-sidebar {
-        height: 50vh;
-    }
-}
-
-/* .prediction-section {
-  margin-top: 5%;
-} */
 
 .prediction-algo {
     color: #4bab9c;

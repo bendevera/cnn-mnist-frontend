@@ -6,7 +6,7 @@ const ResultsSection = ({ results }) => {
     if (results) {
         return (
             <div className="col-md-4 col-xs-12 main m-0 result-section">
-                <h3 className="main-header result-header">Model Predictions</h3>
+                <h3 className="main-header prediction-section-header">3. prediction</h3>
                 <div className="prediction-section">
                     <div className="prediction" key={results.id}>
                         <p className="prediction-algo">optimizer: {results.optimizer} | # layers: {results.layers}</p>
@@ -20,7 +20,7 @@ const ResultsSection = ({ results }) => {
     } else {
         return (
             <div className="col-md-4 col-xs-12 main m-0 result-section">
-                <h3 className="main-header result-header">Model Predictions</h3>
+                <h3 className="main-header prediction-section-header">3. prediction</h3>
                 <div className="prediction-section">
                     <div className="prediction">
                         <p className="prediction-result">no predictions requested yet.</p>

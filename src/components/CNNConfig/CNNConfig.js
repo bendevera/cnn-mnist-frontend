@@ -49,64 +49,65 @@ class CNNConfig extends React.Component {
     render() {
         return (
             <div className="col-md-4 col-xs-12 sticky-sidebar">
-                    <h1>MNIST Algo Toy</h1>
-                    <ul className="main-link-list">
-                        <li className="sub-link-list">
-                            <h2>model parameters</h2>
-                            <div className="setting-item">
-                                <h5 className="setting-heading">layers</h5>
-                                {Object.keys(this.state.layers).map( key => {
-                                    console.log(key);
-                                    if (this.state.layers[key]) {
-                                        console.log("returning the active")
-                                        return (
-                                            <div 
-                                            className="setting-option-active col-4"
-                                            key={key}>
-                                                {key}
-                                            </div>
-                                        )
-                                    }
-                                    console.log("returning the non active")
+                    <h3 className="main-header settings-header">1. parameters</h3>
+                    <div className="settings-wrapper">
+                        <div className="setting-item">
+                            <h5 className="setting-heading">layers</h5>
+                            {Object.keys(this.state.layers).map( key => {
+                                console.log(key);
+                                if (this.state.layers[key]) {
+                                    console.log("returning the active")
                                     return (
                                         <div 
-                                        className="setting-option col-4"
-                                        onClick={this.handleLayers}
-                                        data={key}
+                                        className="setting-option-active col-4"
                                         key={key}>
                                             {key}
                                         </div>
                                     )
-                                })}
-                            </div>
-                            <div className="setting-item">
-                                <h5 className="setting-heading">optimizer</h5>
-                                {Object.keys(this.state.optimizer).map( key => {
-                                    console.log(key);
-                                    if (this.state.optimizer[key]) {
-                                        console.log("returning the active")
-                                        return (
-                                            <div 
-                                            className="setting-option-active col-4"
-                                            key={key}>
-                                                {key}
-                                            </div>
-                                        )
-                                    }
-                                    console.log("returning the non active")
+                                }
+                                console.log("returning the non active")
+                                return (
+                                    <div 
+                                    className="setting-option col-4"
+                                    onClick={this.handleLayers}
+                                    data={key}
+                                    key={key}>
+                                        {key}
+                                    </div>
+                                )
+                            })}
+                        </div>
+                        <div className="setting-item">
+                            <h5 className="setting-heading">optimizer</h5>
+                            {Object.keys(this.state.optimizer).map( key => {
+                                console.log(key);
+                                if (this.state.optimizer[key]) {
+                                    console.log("returning the active")
                                     return (
                                         <div 
-                                        className="setting-option col-4"
-                                        onClick={this.handleOptimizer}
-                                        data={key}
+                                        className="setting-option-active col-4"
                                         key={key}>
                                             {key}
                                         </div>
                                     )
-                                })}
-                            </div>
-                        </li>
-                    </ul>
+                                }
+                                console.log("returning the non active")
+                                return (
+                                    <div 
+                                    className="setting-option col-4"
+                                    onClick={this.handleOptimizer}
+                                    data={key}
+                                    key={key}>
+                                        {key}
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </div>
+                    <div className="brand-section">
+                        <h1>cnn mnist toy</h1>
+                        <p>by: <a className="brand-secton-link" href="https://bendevera.com">bendevera.</a></p>
+                    </div>
             </div>
         )
     }
