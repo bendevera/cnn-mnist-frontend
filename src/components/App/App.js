@@ -4,6 +4,9 @@ import CNNConfig from '../CNNConfig/CNNConfig';
 import DrawSection from '../DrawSection/DrawSection';
 import ResultsSection from '../ResultsSection/ResultsSection';
 import config from '../../config';
+import ReactGA from 'react-ga';
+
+ReactGA.initialize('UA-134639598-4');
 
 
 class App extends React.Component {
@@ -40,6 +43,10 @@ class App extends React.Component {
   // this function sends the base64 encoded png to the server to get predictions
   getPredictions() {
     console.log("Getting predictions");
+    ReactGA.event({
+      category: 'User',
+      action: 'Made prediction'
+    });
     if (this.state.optimizer === null | this.state.layers === null) {
       alert("Must have all model parameters selected.")
     } else {
@@ -75,6 +82,10 @@ class App extends React.Component {
     this.setState({
       img: dataUrl
     })
+  }
+
+  componentDidMount() {
+    ReactGA.pageview("/");
   }
 
   render() {
